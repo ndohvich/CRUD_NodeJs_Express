@@ -5,8 +5,15 @@ var path = require('path');
 var exphbs = require('express-handlebars');
 
 const employeeController = require('./controllers/employeeController');
+const bodyParser = require('body-parser');
 
 var app = express();
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
 
 app.set('views', path.join(__dirname, '/views/'));
 app.engine('hbs', exphbs.engine({
