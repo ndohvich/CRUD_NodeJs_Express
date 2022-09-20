@@ -1,15 +1,19 @@
 require('./models/db');
  
-const express = require('express');
-const path = require('path');
-const exphbs = require('express-handlebars');
+var express = require('express');
+var path = require('path');
+var exphbs = require('express-handlebars');
 
 const employeeController = require('./controllers/employeeController');
 
 var app = express();
 
-app.set('views', path.join(__dirname, '/views'));
-app.engine('hbs', exphbs);
+app.set('views', path.join(__dirname, '/views/'));
+app.engine('hbs', exphbs.engine({
+    extname: 'hbs', 
+    defaultLayout: 'mainLayout', 
+    layoutsDir:__dirname + '/views/layout/' 
+}));
 app.set('view engine', 'hbs');
 
 app.listen(3000, () => {
